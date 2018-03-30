@@ -1,0 +1,41 @@
+{
+  "name": "pg-query-exec",
+  "version": "1.0.0",
+  "description": "Pleasant wrapper for pg that provides a simple async API, strong typing, named parameters, and implicit transactions",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sehrope/node-pg-query-exec.git"
+  },
+  "keywords": [
+    "pg",
+    "postgres",
+    "postgresql",
+    "transaction",
+    "tx",
+    "named parameters",
+    "query"
+  ],
+  "author": "Sehrope Sarkuni <sehrope@jackdb.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sehrope/node-pg-query-exec/issues"
+  },
+  "homepage": "https://github.com/sehrope/node-pg-query-exec#readme",
+  "peerDependencies": {
+    "pg": "^7"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.0.0",
+    "@types/node": "^8.10.1",
+    "@types/pg": "^7.4.5",
+    "async-main": "^1.0.2",
+    "mocha": "^3",
+    "nyc": "^11.6.0",
+    "pg": "^7.4.1",
+    "ts-lint": "^4.5.1",
+    "ts-mocha": "^1",
+    "typescript": "^2.8.1"
+  }
+}

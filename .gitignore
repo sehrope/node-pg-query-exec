@@ -1,0 +1,7 @@
+coverage
+.env
+lib
+node_modules
+.nyc_output
+package-lock.json
+scratch

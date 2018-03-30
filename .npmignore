@@ -1,0 +1,11 @@
+coverage
+.env
+examples
+Makefile
+.nyc_output
+scratch
+src
+test
+.travis.yml
+tsconfig.json
+tslint.json
