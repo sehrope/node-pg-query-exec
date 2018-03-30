@@ -1,6 +1,6 @@
 {
   "name": "pg-query-exec",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pleasant wrapper for pg that provides a simple async API, strong typing, named parameters, and implicit transactions",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
