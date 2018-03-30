@@ -216,19 +216,19 @@ describe('QueryExecutor', () => {
 
     describe('array parameters', () => {
         it('should be usable', async () => {
-            const row = await executor.queryOne('SELECT $1 AS x', ['test']);
+            const row = await executor.queryOne('SELECT $1::text AS x', ['test']);
             assert.ok(row);
             assert.equal(row.x, 'test');
         });
     });
     describe('named parameters', () => {
         it('should be usable', async () => {
-            const row = await executor.queryOne('SELECT :name AS x', { name: 'test' });
+            const row = await executor.queryOne('SELECT :name::text AS x', { name: 'test' });
             assert.ok(row);
             assert.equal(row.x, 'test');
         });
         it('should be reusable multiple times', async () => {
-            const row = await executor.queryOne('SELECT :name AS x, :name AS y', { name: 'test' });
+            const row = await executor.queryOne('SELECT :name::text AS x, :name AS y', { name: 'test' });
             assert.ok(row);
             assert.equal(row.x, 'test');
             assert.equal(row.y, 'test');
