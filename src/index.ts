@@ -165,7 +165,7 @@ export function createQueryExecutor(pool: Pool, opts: CreateQueryExecutorOpts = 
         // NOTE: We explicitly await the result here to ensure the finally gets evaluated after it completes
         try {
             if (tx) {
-                if (!opts.allowNestedTransactions && tx.numExecutingQueries > 0) {
+                if (!opts.allowConcurrentQueryInTransaction && tx.numExecutingQueries > 0) {
                     throw createQueryExecutorError('Concurrent usage of transactional clients is disabled');
                 }
                 tx.numExecutingQueries += 1;
