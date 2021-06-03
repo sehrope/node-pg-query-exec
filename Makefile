@@ -14,7 +14,7 @@ watch:
 	node_modules/.bin/tsc --watch --declaration
 
 test: clean compile
-	node_modules/.bin/ts-mocha --opts test/mocha.opts test/suite.ts $(TEST_ARGS)
+	node_modules/.bin/ts-mocha test/suite.ts --exit $(TEST_ARGS)
 
 test-cov: clean compile
 	node_modules/.bin/nyc \
