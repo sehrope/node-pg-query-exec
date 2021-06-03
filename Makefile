@@ -22,7 +22,7 @@ test-cov: clean compile
 	  --require ts-node/register \
 	  --reporter html \
 	  --extension .ts \
-	  node_modules/.bin/ts-mocha --opts test/mocha.opts test/suite.ts
+	  node_modules/.bin/ts-mocha --exit test/suite.ts
 
 lint:
 	node_modules/.bin/tslint --project tsconfig.json
