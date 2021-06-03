@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/sehrope/node-pg-query-exec#readme",
   "peerDependencies": {
-    "pg": "^7"
+    "pg": "^8.6.0"
   },
   "devDependencies": {
     "@types/mocha": "^5.0.0",
@@ -33,7 +33,7 @@
     "async-main": "^1.0.2",
     "mocha": "^3",
     "nyc": "^11.6.0",
-    "pg": "^7.4.1",
+    "pg": "8.6.0",
     "ts-lint": "^4.5.1",
     "ts-mocha": "^1",
     "typescript": "^2.8.1"
