@@ -1,4 +1,3 @@
-// tslint:disable
 const PARAMETER_SEPARATORS = ['"', '\'', ':', '&', ',', ';', '(', ')', '|', '=', '+', '-', '*', '%', '/', '\\', '<', '>', '^'];
 
 export interface NamedParam {

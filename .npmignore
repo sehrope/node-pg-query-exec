@@ -1,5 +1,6 @@
 coverage
 .env
+.eslintrc.js
 examples
 Makefile
 .nyc_output
@@ -8,4 +9,3 @@ src
 test
 .travis.yml
 tsconfig.json
-tslint.json
