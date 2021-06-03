@@ -25,7 +25,7 @@ export class QueryExecutorError extends Error {
     /**
      * Override toJSON() to ensure that sensitive SQL or parameters are not logged.
      */
-    public toJSON = () => {
+    public toJSON = (): Record<string, unknown> => {
         return {};
     }
 }

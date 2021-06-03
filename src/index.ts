@@ -91,6 +91,7 @@ export function createQueryExecutor(pool: Pool, opts: CreateQueryExecutorOpts = 
     };
     const wrapClient = (client: PoolClient) => {
         return new Proxy<PoolClient>(client, {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             get(target, prop, receiver) {
                 if (prop === 'release') {
                     return () => {

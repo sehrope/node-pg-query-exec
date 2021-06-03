@@ -25,7 +25,7 @@ test-cov: clean compile
 	  node_modules/.bin/ts-mocha --exit test/suite.ts
 
 lint:
-	node_modules/.bin/tslint --project tsconfig.json
+	node_modules/.bin/eslint src
 
 package: clean deps compile
 
