@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - '*'
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Lint
+      run: make clean deps lint
+
+  test:
+    name: Test - Node v${{ matrix.node_version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version:
+          - '12'
+          - '14'
+          - '16'
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node_version }}
+    - name: Compile
+      run: make clean deps compile
+    - name: Setup Postgres
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+      run: |
+        docker run \
+          --detach \
+          --env POSTGRES_HOST_AUTH_METHOD=trust \
+          --publish 5432:5432 \
+          postgres
+        for i in {1..15}
+        do
+          pg_isready && break
+          sleep 1
+        done
+        psql \
+          -v ON_ERROR_STOP=1 \
+          -c 'SELECT version()' \
+          -c "CREATE USER test WITH PASSWORD 'dbpass'" \
+          -c "CREATE DATABASE test WITH OWNER test"
+    - name: Test
+      env:
+        DATABASE_URL: postgresql://test:dbpass@localhost/test
+      run: make test-cov
+    - name: 'Upload Coverage'
+      uses: codecov/codecov-action@a1ed4b322b4b38cb846afb5a0ebfa17086917d27
+      with:
+        file: ./coverage/lcov.info
