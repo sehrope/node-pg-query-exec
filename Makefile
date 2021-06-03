@@ -20,7 +20,8 @@ test-cov: clean compile
 	node_modules/.bin/nyc \
 	  --require source-map-support/register \
 	  --require ts-node/register \
-	  --reporter html \
+	  --reporter=html \
+	  --reporter=lcov \
 	  --extension .ts \
 	  node_modules/.bin/ts-mocha --exit test/suite.ts
 
