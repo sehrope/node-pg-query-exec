@@ -63,11 +63,11 @@ export function parse(sql: string): ParsedSql {
     let l: number;
     let len: number;
     let namedParam: any;
-    let namedParams: any;
+    const namedParams: any = {};
     let param: any;
     let paramCount: any;
-    let paramTypes: any;
-    let params: any[];
+    const paramTypes: any = {};
+    const params: any[] = [];
     let ref: string;
     let ref1: string;
     let ref2: number;
@@ -75,12 +75,11 @@ export function parse(sql: string): ParsedSql {
     if (typeof sql !== 'string') {
         throw new Error('sql must be a string');
     }
-    params = [];
     i = 0;
     function throwError(msg: string, pos: number) {
         pos = pos || i;
         throw new Error((msg || 'Error') + ' at position ' + pos + ' in statment ' + sql);
-    };
+    }
     while (i < sql.length) {
         skipPos = i;
         while (i < sql.length) {
@@ -142,8 +141,6 @@ export function parse(sql: string): ParsedSql {
         numParams: params.length,
         numDistinctParams: 0
     };
-    paramTypes = {};
-    namedParams = {};
     paramCount = 0;
     for (k = 0, len = params.length; k < len; k++) {
         param = params[k];
@@ -181,22 +178,16 @@ export function parse(sql: string): ParsedSql {
 export interface NamedParams {
     [key: string]: any;
     forEach?: void;
-};
+}
 
 export function convertParamValues(parsedSql: ParsedSql, values: NamedParams): any[] {
-    let k: number;
-    let len: number;
-    let param: any;
-    let ref: any;
     const ret: any[] = [];
-    ref = parsedSql.params;
-    for (k = 0, len = ref.length; k < len; k++) {
-        param = ref[k];
+    parsedSql.params.forEach((param) => {
         if (param.name in values) {
             ret.push(values[param.name]);
         } else {
             throw new Error('No value found for parameter: ' + param.name);
         }
-    }
+    });
     return ret;
 }
