@@ -2,6 +2,7 @@ coverage
 .env
 .eslintrc.js
 examples
+.github/**
 Makefile
 .nyc_output
 scratch
