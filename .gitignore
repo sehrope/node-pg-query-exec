@@ -5,3 +5,4 @@ node_modules
 .nyc_output
 package-lock.json
 scratch
+# Dummy change goes here
